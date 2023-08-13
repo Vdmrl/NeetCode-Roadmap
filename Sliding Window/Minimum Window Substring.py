@@ -2,8 +2,8 @@ from collections import Counter
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        # 147ms 54%
-        # 17.1mb 95%
+        # 90ms 99%
+        # 17mb 94%
         min_st, c, target_length, length, l = [-1, -1], Counter(t), len(t), 0, 0
         for r in range(len(s)):
             if s[r] in c.keys():
@@ -19,7 +19,4 @@ class Solution:
             if length == target_length:
                 if min_st[0] == -1 or r - l + 1 < min_st[1] - min_st[0] + 1:
                     min_st = [l, r]
-        if min_st[0] == -1:
-            return ""
-        else:
-            return s[min_st[0]:min_st[1] + 1]
+        return "" if min_st[0] == -1 else s[min_st[0]:min_st[1] + 1]
