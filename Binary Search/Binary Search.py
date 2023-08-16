@@ -14,3 +14,5 @@ class Solution:
             else:
                 return t
         return -1
+
+print(Solution().search([1,2,3,4,5,6,7,8], 8))
