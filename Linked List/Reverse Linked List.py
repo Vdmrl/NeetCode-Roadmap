@@ -12,16 +12,30 @@ class Solution:
         # O(n)
         # 31ms 99%
         # 19.9mb 73%
-        prev = None
-        curr = head
+        if head is None or head.next == None:
+            return head
+        prev, curr = None, head
         while True:
             temp = curr.next
             curr.next = prev
             prev = curr
             curr = temp
             if curr.next == None:
+                curr.next = prev
                 break
-        return head
-    def reverseListRec(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        pass
+        return curr
 
+    def reverseListRec(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # O(n)
+        # 40ms 82%
+        # 22.78mb 13%
+        if not head:
+            return None
+
+        new_head = head
+        if head.next:
+            new_head = self.reverseListRec(head.next)
+            head.next.next = head
+        head.next = None
+
+        return new_head
