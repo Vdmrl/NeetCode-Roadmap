@@ -11,6 +11,7 @@ class ListNode:
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[
         ListNode]:
+        # Iterable solution
         # O(n + m)
         # 38ms 92%
         # 16.2mb 80%

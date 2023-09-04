@@ -9,6 +9,7 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Iterable solution
         # O(n)
         # 31ms 99%
         # 19.9mb 73%
@@ -26,6 +27,7 @@ class Solution:
         return curr
 
     def reverseListRec(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Recursive solution
         # O(n)
         # 40ms 82%
         # 22.78mb 13%
