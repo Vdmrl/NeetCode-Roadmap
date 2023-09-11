@@ -8,6 +8,8 @@ class Node:
 
 
 class LRUCache:
+    # O(1) - 710ms - 65%
+    # 0(1) - 78.5mb - 40%
     def __init__(self, capacity: int):
         self.key_to_val = dict()
         self.left, self.right = Node(0, 0), Node(0, 0)
@@ -28,7 +30,7 @@ class LRUCache:
         if key in self.key_to_val.keys():
             self.delete(self.key_to_val[key])
             self.append(self.key_to_val[key])
-            return self.key_to_val[key]
+            return self.key_to_val[key].val
         return -1
 
     def put(self, key: int, value: int) -> None:
@@ -37,7 +39,7 @@ class LRUCache:
         self.key_to_val[key] = Node(key, value)
         self.append(self.key_to_val[key])
         if len(self.key_to_val) > self.capacity:
-            self.key_to_val.pop(self.left.next)
+            del self.key_to_val[self.left.next.key]
             self.delete(self.left.next)
             pass
         return None
