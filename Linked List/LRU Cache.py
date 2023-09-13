@@ -43,6 +43,34 @@ class LRUCache:
             self.delete(self.left.next)
             pass
         return None
+
+from collections import OrderedDict
+
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.key_to_val = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key in self.key_to_val.keys():
+            self.key_to_val.move_to_end(key)
+            return self.key_to_val[key]
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        # O(1) - 577ms - 98%
+        # O(1) - 77.18mb - 89%
+        if key in self.key_to_val.keys():
+            self.key_to_val[key] = value
+        elif len(self.key_to_val) == self.capacity:
+            self.key_to_val.popitem(last=False)
+            self.key_to_val[key] = value
+            self.key_to_val.move_to_end(key)
+        else:
+            self.key_to_val[key] = value
+            self.key_to_val.move_to_end(key)
+        return None
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
