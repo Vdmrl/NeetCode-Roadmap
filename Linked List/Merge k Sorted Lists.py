@@ -43,15 +43,16 @@ class Solution:
         head = cur = ListNode()
         while True:
             min_ind = -1
-            for i in range(1, len(lists)):
-                if min_ind == -1 or lists[i] and lists[i].val < lists[min_ind].val:
-                    min_ind = i
+            for i in range(0, len(lists)):
+                if lists[i]:
+                    if min_ind == -1 or lists[i].val < lists[min_ind].val:
+                        min_ind = i
             if min_ind == -1:
                 break
             cur.next = lists[min_ind]
             cur = cur.next
             lists[min_ind] = lists[min_ind].next
-        return head
+        return head.next
 
     def mergeKListsSort(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         # O(n*log(n)) 94ms - 73%
