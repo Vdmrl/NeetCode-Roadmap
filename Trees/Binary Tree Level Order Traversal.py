@@ -1,5 +1,5 @@
 from typing import Optional, List
-
+from collections import deque
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -15,18 +15,15 @@ class Solution:
         if not root:
             return []
         ans = [[]]
-        nodes = [root]
-        new_nodes = []
+        nodes = deque(root)
         while nodes:
-            while nodes:
-                rt = nodes.pop(0)
+            for i in range(len(nodes)):
+                rt = nodes.popleft()
                 ans[-1].append(rt.val)
                 if rt.left:
-                    new_nodes.append(rt.left)
+                    nodes.append(rt.left)
                 if rt.right:
-                    new_nodes.append(rt.right)
-            if new_nodes:
-                nodes = new_nodes
-                new_nodes = []
+                    nodes.append(rt.right)
+            if nodes:
                 ans.append([])
         return ans
