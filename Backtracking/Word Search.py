@@ -32,6 +32,7 @@ class Solution:
             cur_len -= 1
             return False
 
+        # rotate word if last letter appear less frequently on board
         count = defaultdict(int, sum(map(Counter, board), Counter()))
         if count[word[0]] > count[word[-1]]:
             word = word[::-1]
