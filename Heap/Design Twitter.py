@@ -22,10 +22,10 @@ class Twitter:
         # form min heap from all posts
         hq = []
         for i in self.subscriptions[userId]:
-            if temp:=self.posts[i]:
+            if temp := self.posts[i]:
                 hq.append(temp.copy())
-        if temp:=self.posts[userId]:
-                hq.append(temp.copy())
+        if temp := self.posts[userId]:
+            hq.append(temp.copy())
         heapq.heapify(hq)
 
         # get last 10 posts
